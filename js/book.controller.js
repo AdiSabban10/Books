@@ -9,6 +9,7 @@ function onInit() {
 function render() {
     const elTbody = document.querySelector('tbody')
     const books = getBooks(gFilterBy)
+    const emptyTable = `<tr><td colspan="3">No matching books were found</td></tr>`
 
     const strHtmls = books.map(book => `<tr>
             <td>${book.title}</td>
@@ -19,7 +20,8 @@ function render() {
                 <button onclick="onRemoveBook('${book.id}')" class="btn delete">Delete</button>
             </td>
         </tr>`)
-    elTbody.innerHTML = strHtmls.join('')
+    if (books.length === 0) elTbody.innerHTML = emptyTable
+    else elTbody.innerHTML = strHtmls.join('')
 
     renderStats()
 }
