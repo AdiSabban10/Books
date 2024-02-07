@@ -25,6 +25,7 @@ function render() {
 
 function onRemoveBook(bookId) {
     removeBook(bookId)
+    userMsg('The book has been removed', 'remove')
     render()
 }
 
@@ -33,6 +34,7 @@ function onUpdateBook(bookId) {
     if(!newPrice) return
 
     updatePrice(bookId, newPrice)
+    userMsg('The book has been updated', 'add')
     render()
 }
 
@@ -42,12 +44,13 @@ function onAddBook() {
     
     if (title && price) {
         addBook(title, price)
+        userMsg('The book has been successfully added', 'add')
+        render()
     } else {
         alert("Please provide both title and price.")
         return
     }
 
-    render()
 }
 
 function onReadBook(bookId) {
@@ -73,4 +76,13 @@ function onBookFilter() {
     gFilterBy = input.value
 
     render()
+}
+
+function userMsg(msg, mode) {
+    const elMsg = document.querySelector('.alert-msg')
+    
+    elMsg.innerText = msg
+    elMsg.classList.remove('hidden')
+
+    setTimeout(() => elMsg.classList.add('hidden'), 2000)
 }
