@@ -3,8 +3,10 @@
 var gBooks 
 _createBooks()
 
-function getBooks() {
-    return gBooks
+function getBooks(filterBy) {
+    if (!filterBy) return gBooks
+    var filterdBooks = gBooks.filter(book => book.title.toLowerCase().includes(filterBy.toLowerCase()))
+    return filterdBooks
 }
 
 function removeBook(bookId) {
@@ -13,7 +15,6 @@ function removeBook(bookId) {
 
     _saveBooks()
 }
-
 
 function updatePrice(bookId, price) {
     const book = gBooks.find(book => book.id === bookId)

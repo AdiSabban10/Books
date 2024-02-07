@@ -10,7 +10,11 @@
 
 <body onload="onInit()">
     <h1>Book Shop</h1>
-    <button onclick="onAddBook()" class="add-book">Add book</button>
+
+    <div class="menu">
+        <input oninput="onBookFilter()" type="search" placeholder="Search..">
+        <button onclick="onAddBook()" class="add-book">Add book</button>
+    </div>
 
     <dialog class="book-details">
         <form method="dialog">

@@ -1,12 +1,14 @@
 'use strict'
 
+var gFilterBy = ''
+
 function onInit() {
     render() 
 }
 
 function render() {
     const elTbody = document.querySelector('tbody')
-    const books = getBooks()
+    const books = getBooks(gFilterBy)
 
     const strHtmls = books.map(book => `<tr>
             <td>${book.title}</td>
@@ -64,4 +66,11 @@ function onReadBook(bookId) {
     elImg.src = `img/${book.imgUrl}`
 
     elModal.showModal()
+}
+
+function onBookFilter() {
+    const input = document.querySelector('input')
+    gFilterBy = input.value
+
+    render()
 }
