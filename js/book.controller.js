@@ -20,6 +20,8 @@ function render() {
             </td>
         </tr>`)
     elTbody.innerHTML = strHtmls.join('')
+
+    renderStats()
 }
 
 
@@ -85,4 +87,19 @@ function userMsg(msg) {
     elMsg.classList.remove('hidden')
 
     setTimeout(() => elMsg.classList.add('hidden'), 2000)
+}
+
+
+function renderStats() {
+    const elTotal = document.querySelector('.total-books')
+    const elExpens = document.querySelector('.expensive-books')
+    const elCheap = document.querySelector('.cheap-books')
+    const elAvg = document.querySelector('.avg-books')
+
+    const stats = getStats()
+
+    elTotal.innerText = stats.total
+    elExpens.innerText = stats.expensive
+    elCheap.innerText = stats.cheap
+    elAvg.innerText = stats.avg
 }

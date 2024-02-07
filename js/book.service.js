@@ -36,6 +36,19 @@ function readBook(bookId) {
 	return book
 }
 
+function getStats() {
+    const stats = gBooks.reduce((acc, book) => {
+        acc.total++
+        if(book.price >= 200) acc.expensive++
+        if(book.price <= 80) acc.cheap++
+        if(book.price > 80 && book.price < 200) acc.avg++
+
+        return acc
+    }, {total: 0, expensive: 0, cheap: 0, avg: 0})
+
+    return stats
+}
+
 // Private functions
 
 function _createBooks() {
